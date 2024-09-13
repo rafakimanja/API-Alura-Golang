@@ -12,8 +12,9 @@ func HandleRequest() {
 
 	r := mux.NewRouter()
 	r.HandleFunc("/", controllers.Home)
-	r.HandleFunc("/personalidades", controllers.AllPersonas)
-	r.HandleFunc("/api/personalidades/{id}", controllers.GetPersona)
+	r.HandleFunc("/personalidades", controllers.AllPersonas).Methods("Get")
+	r.HandleFunc("/personalidades/{id}", controllers.GetPersona).Methods("Get")
+
 	http.Handle("/", r) //registra o roteador
 
 	log.Fatal(http.ListenAndServe(":8000", nil))

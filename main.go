@@ -1,6 +1,7 @@
 package main
 
 import (
+	"api-golang/database"
 	"api-golang/models"
 	"api-golang/routes"
 	"fmt"
@@ -12,6 +13,8 @@ func main() {
 		{Id: 1, Nome: "Nome 1", Historia: "Historia 1"},
 		{Id: 2, Nome: "Nome 2", Historia: "Historia 2"},
 	}
+
+	database.ConectDatabase()
 
 	fmt.Println("Iniciando servidor... Localhost:8000")
 	routes.HandleRequest()
