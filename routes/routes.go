@@ -16,6 +16,7 @@ func HandleRequest() {
 	r.HandleFunc("/personalidades/{id}", controllers.GetPersona).Methods("Get")
 	r.HandleFunc("/personalidades", controllers.CreatePersona).Methods("Post")
 	r.HandleFunc("/personalidades/{id}", controllers.DeletePersona).Methods("Delete")
+	r.HandleFunc("/personalidades/{id}", controllers.EditPersona).Methods("Put")
 
 	http.Handle("/", r) //registra o roteador
 

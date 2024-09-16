@@ -52,3 +52,17 @@ func DeletePersona(w http.ResponseWriter, r *http.Request) {
 	database.DB.Delete(&p, id)
 	json.NewEncoder(w).Encode(p)
 }
+
+func EditPersona(w http.ResponseWriter, r *http.Request) {
+
+	vars := mux.Vars(r)
+	id := vars["id"]
+	var p models.Personalidade
+
+	database.DB.First(&p, id)
+
+	json.NewDecoder(r.Body).Decode(&p)
+	database.DB.Save(&p)
+
+	json.NewEncoder(w).Encode(p)
+}
