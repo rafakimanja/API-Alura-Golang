@@ -5,8 +5,9 @@ import (
 	"api-golang/models"
 	"encoding/json"
 	"fmt"
-	"github.com/gorilla/mux"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 func Home(w http.ResponseWriter, r *http.Request) {
@@ -29,4 +30,14 @@ func GetPersona(w http.ResponseWriter, r *http.Request) {
 	database.DB.First(&p, id)
 
 	json.NewEncoder(w).Encode(p)
+}
+
+func CreatePersona(w http.ResponseWriter, r *http.Request) {
+
+	var newP models.Personalidade
+
+	json.NewDecoder(r.Body).Decode(&newP)
+	database.DB.Create(&newP)
+
+	json.NewEncoder(w).Encode(newP)
 }
